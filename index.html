@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PromptForger: The Dojo</title>
+<style>
+:root{
+  --navy:#111827; --ink:#172033; --muted:#667085; --paper:#f7f5ef;
+  --card:#fff; --line:#d9dee8; --soft:#eef2f7; --green:#00ff41; --black:#050806;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.55}
+.wrap{max-width:1050px;margin:auto;padding:28px 18px 60px}
+.hero{background:var(--navy);color:#fff;border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;min-height:285px;box-shadow:0 16px 40px rgba(17,24,39,.16)}
+.heroText{padding:38px 40px;display:flex;flex-direction:column;justify-content:center}
+.eyebrow{letter-spacing:.15em;text-transform:uppercase;font-weight:800;font-size:.78rem;color:#b9c6da}
+h1{font-size:clamp(2.1rem,5vw,4rem);line-height:1;margin:.3rem 0 .7rem}
+.hero strong{font-size:1.12rem}
+.hero p{max-width:650px;color:#d9e1ed;margin:.75rem 0 0}
+.heroImg{background:linear-gradient(90deg,rgba(17,24,39,.28),rgba(17,24,39,.02)),url("https://images.squarespace-cdn.com/content/v1/6654dc7d82556754b3208baf/59820cac-c2f3-49d6-8d0e-30e332ba107a/photoTreeTriangle.jpg?format=2500w") center/cover no-repeat;min-height:285px}
+.intro,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px;margin-top:20px;box-shadow:0 4px 14px rgba(16,24,40,.04)}
+.intro h2,.card h2{margin-top:0}
+.badge{display:inline-block;background:#eaf0f7;border-radius:999px;padding:5px 10px;font-size:.82rem;font-weight:800;color:#34435d}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+.step{background:var(--soft);padding:15px;border-radius:12px}
+.step b{display:block;margin-bottom:3px}
+.note{border-left:4px solid #263b5e;padding-left:14px}
+label{display:block;font-weight:780;margin:15px 0 7px}
+textarea,input{width:100%;font:inherit;border:1px solid #bcc5d2;border-radius:10px;padding:12px;background:#fff;color:var(--ink)}
+textarea{min-height:120px;resize:vertical}
+textarea.big{min-height:220px}
+.help{font-size:.92rem;color:var(--muted);margin-top:5px}
+.target{border:1px solid var(--line);border-radius:13px;padding:16px;margin-top:12px;background:#fbfcfe}
+.targetHead{display:flex;align-items:center;gap:10px}
+.targetNum{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--navy);color:#fff;font-weight:850;font-size:.85rem;flex:0 0 auto}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 12px}
+button{border:0;border-radius:10px;padding:12px 17px;font-weight:800;font-size:.98rem;cursor:pointer}
+.primary{background:var(--navy);color:#fff}
+.secondary{background:#e5eaf1;color:var(--ink)}
+.matrix{display:none;background:var(--black);color:var(--green);font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace;border-radius:16px;padding:22px;margin-top:20px;box-shadow:0 0 28px rgba(0,255,65,.10);position:relative;overflow:hidden}
+.matrix:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,0) 3px,rgba(0,255,65,.025) 4px)}
+.matrix pre{white-space:pre-wrap;word-wrap:break-word;margin:0;position:relative;z-index:1}
+.matrix .actions{position:relative;z-index:2}
+.matrix button{background:#102016;color:var(--green);border:1px solid #176f30}
+summary{cursor:pointer}
+footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:26px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.heroImg{min-height:180px}.heroText{padding:30px 25px}.steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+<section class="hero">
+  <div class="heroText">
+    <div class="eyebrow">PromptForger • Practice</div>
+    <h1>The Dojo</h1>
+    <strong>Target the weakness. Train with the Sensei.</strong>
+    <p>You have already tested what you can do independently. Now turn the Trainer's diagnosis into deliberate practice: focused challenges, immediate feedback, repeated attempts, and increasing difficulty.</p>
+  </div>
+  <div class="heroImg" role="img" aria-label="Abstract tree and triangular landscape"></div>
+</section>
+
+<section class="intro">
+  <span class="badge">DIAGNOSE → PRACTICE → FEEDBACK → ADAPT → RETEST</span>
+  <h2>How the Dojo works</h2>
+  <p>The Dojo is not another quiz and the Sensei is not an answer machine. Practice begins with a specific weakness. The Sensei chooses exercises that target it, adjusts the difficulty based on your performance, and eventually tests whether you can perform without help.</p>
+  <div class="steps">
+    <div class="step"><b>1. Choose the target</b>Bring in the specific weaknesses identified by the Trainer.</div>
+    <div class="step"><b>2. Train</b>Work through short, focused challenges with feedback after each attempt.</div>
+    <div class="step"><b>3. Test</b>Finish with an independent challenge to see whether the improvement transfers.</div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>1. Bring Your Trainer's Report</h2>
+  <p class="note"><strong>Don't start from scratch.</strong> The Track already generated evidence about your performance. Use the <strong>Dojo Targets</strong> from your Trainer's Report so practice begins where you actually need it.</p>
+
+  <label for="report">Paste your Trainer's Report</label>
+  <textarea class="big" id="report" placeholder="Paste the final Trainer's Report from The Track here."></textarea>
+
+  <h3 style="margin-top:24px">Your Dojo Targets</h3>
+  <p class="help">If the Trainer listed targets, copy them below. Use only the targets that actually need practice. One to three is enough.</p>
+
+  <div class="target">
+    <div class="targetHead"><div class="targetNum">1</div><strong>Primary target</strong></div>
+    <input id="target1" placeholder="e.g., Distinguishing logical consistency from truth">
+  </div>
+  <div class="target">
+    <div class="targetHead"><div class="targetNum">2</div><strong>Second target</strong></div>
+    <input id="target2" placeholder="Optional">
+  </div>
+  <div class="target">
+    <div class="targetHead"><div class="targetNum">3</div><strong>Third target</strong></div>
+    <input id="target3" placeholder="Optional">
+  </div>
+
+  <label for="context">Anything else the Sensei should know?</label>
+  <textarea id="context" placeholder="Optional: describe what kept tripping you up, a kind of example you found difficult, or anything else that would help target the practice."></textarea>
+</section>
+
+<section class="card">
+  <h2>2. Course Reference</h2>
+  <p>The Sensei will use the instructor's glossary as the authoritative reference while designing practice. It may create new examples and cases, but it should preserve the lesson's terminology and distinctions.</p>
+  <details>
+    <summary><strong>View the authoritative glossary</strong></summary>
+    <div style="margin-top:15px">
+      <h3>The Nature of the Field</h3>
+      <p><strong>Philosophy (φιλοσοφία):</strong> Literally "love of wisdom"; often defined as the study of the fundamental nature of knowledge, reality, and existence.</p>
+      <p><strong>Plurality of Meaning:</strong> The definition of philosophy has shifted across eras:</p>
+      <ul>
+        <li><strong>Ancient Greece:</strong> Lifestyle schools (like Stoics) focused on how to live.</li>
+        <li><strong>Middle Ages:</strong> Often viewed as a partner to theology (the "two truths" doctrine).</li>
+        <li><strong>Modern Era:</strong> Seen as an autonomous field for discovering fundamental truths (Descartes/Kant).</li>
+        <li><strong>20th Century:</strong> Some, like the Vienna Circle, saw it as a tool for logic/science, while others saw it as a "theoretical wing" of natural science.</li>
+      </ul>
+      <h3>The Philosopher's Tools: Arguments &amp; Logic</h3>
+      <p><strong>Argument:</strong> Not a "fight," but a set of sentences given in support of a conclusion.</p>
+      <p><strong>Premise:</strong> A specific sentence or claim that provides support for the final point.</p>
+      <p><strong>Conclusion:</strong> The main sentence or claim being argued for.</p>
+      <p><em>Example:</em> (1) All men are mortal. (2) Socrates is a man. (3) Therefore, Socrates is mortal.</p>
+      <p><strong>Logical Consistency:</strong> Two or more statements are consistent if it is possible for them all to be true at the same time.</p>
+      <ul>
+        <li><strong>Note:</strong> Consistency ≠ Truth. Two false statements can still be consistent.</li>
+        <li><strong>Implication:</strong> If a theory contains an inconsistency, it <em>cannot</em> be true.</li>
+      </ul>
+      <h3>Errors in Reasoning: Fallacies &amp; Biases</h3>
+      <p><strong>Fallacy:</strong> An error in reasoning.</p>
+      <ul>
+        <li><strong>Formal Fallacies:</strong> Structural errors in the argument.</li>
+        <li><strong>Informal Fallacies:</strong> Errors in the relationship between premises and conclusion.</li>
+      </ul>
+      <p><strong>Argumentum Ad Hominem:</strong> A fallacy where one attacks the <em>arguer</em> rather than the argument itself.</p>
+      <p><strong>Confirmation Bias (aka My-Side Bias):</strong> The unconscious tendency to seek or selectively recall information that confirms our existing beliefs.</p>
+      <ul><li><strong>Insight:</strong> High knowledge can actually <em>increase</em> this bias, as smart people find more ways to defend their favorite positions.</li></ul>
+      <p><strong>Belief Bias:</strong> The tendency to judge how strong an argument is based on whether you already agree with the conclusion, rather than the logic itself.</p>
+    </div>
+  </details>
+</section>
+
+<section class="card">
+  <h2>3. Enter the Dojo</h2>
+  <p>Forge your practice prompt. The Sensei will choose the exercise format based on the weakness—not based on a fixed learning style—and will increase or decrease difficulty according to your performance.</p>
+  <div class="actions">
+    <button class="primary" onclick="generatePrompt()">Generate Sensei Prompt</button>
+    <button class="secondary" onclick="clearForm()">Reset</button>
+  </div>
+
+  <div id="output" class="matrix">
+    <pre id="promptText"></pre>
+    <div class="actions">
+      <button onclick="copyPrompt()">Copy Prompt</button>
+      <button onclick="downloadPrompt()">Download .txt</button>
+    </div>
+    <div id="copyStatus"></div>
+  </div>
+</section>
+
+<footer>PromptForger • The Dojo • Think first. Then forge your AI tutor.</footer>
+</main>
+
+<script>
+const glossary=`THE NATURE OF THE FIELD
+
+Philosophy (φιλοσοφία): Literally "love of wisdom"; often defined as the study of the fundamental nature of knowledge, reality, and existence.
+
+Plurality of Meaning: The definition of philosophy has shifted across eras:
+- Ancient Greece: Lifestyle schools (like Stoics) focused on how to live.
+- Middle Ages: Often viewed as a partner to theology (the "two truths" doctrine).
+- Modern Era: Seen as an autonomous field for discovering fundamental truths (Descartes/Kant).
+- 20th Century: Some, like the Vienna Circle, saw it as a tool for logic/science, while others saw it as a "theoretical wing" of natural science.
+
+THE PHILOSOPHER'S TOOLS: ARGUMENTS & LOGIC
+
+Argument: Not a "fight," but a set of sentences given in support of a conclusion.
+Premise: A specific sentence or claim that provides support for the final point.
+Conclusion: The main sentence or claim being argued for.
+Example: (1) All men are mortal. (2) Socrates is a man. (3) Therefore, Socrates is mortal.
+
+Logical Consistency: Two or more statements are consistent if it is possible for them all to be true at the same time.
+Note: Consistency ≠ Truth. Two false statements can still be consistent.
+Implication: If a theory contains an inconsistency, it cannot be true.
+
+ERRORS IN REASONING: FALLACIES & BIASES
+
+Fallacy: An error in reasoning.
+- Formal Fallacies: Structural errors in the argument.
+- Informal Fallacies: Errors in the relationship between premises and conclusion.
+
+Argumentum Ad Hominem: A fallacy where one attacks the arguer rather than the argument itself.
+
+Confirmation Bias (aka My-Side Bias): The unconscious tendency to seek or selectively recall information that confirms our existing beliefs.
+Insight: High knowledge can actually increase this bias, as smart people find more ways to defend their favorite positions.
+
+Belief Bias: The tendency to judge how strong an argument is based on whether you already agree with the conclusion, rather than the logic itself.`;
+
+function val(id){return document.getElementById(id).value.trim()}
+
+function generatePrompt(){
+  const report=val("report");
+  const targets=[val("target1"),val("target2"),val("target3")].filter(Boolean);
+  const context=val("context");
+
+  if(!report && targets.length===0){
+    alert("Paste your Trainer's Report or enter at least one Dojo Target before generating the prompt.");
+    return;
+  }
+
+  const prompt=`ROLE
+You are THE SENSEI, an adaptive AI practice coach for an undergraduate philosophy student. I have already studied the lesson, repaired my notes, organized the concepts, and completed an independent retrieval exercise. The Trainer has identified specific weaknesses. Your job is to turn those weaknesses into DELIBERATE PRACTICE.
+
+THE DOJO METAPHOR
+The Dojo is where I practice difficult moves—not where I watch you perform them for me. Give me repeated opportunities to think, decide, explain, revise, and try again.
+
+CORE PRINCIPLE
+Target a specific weakness → require an attempt → give informative feedback → adjust difficulty → repeat → test independent performance.
+
+RULES OF ENGAGEMENT
+1. Do NOT begin with a lecture, study guide, answer key, or complete explanation of the target concept.
+2. Do NOT do the cognitive work for me. I must make an attempt before receiving substantive help.
+3. Treat the instructor-provided glossary below as the authoritative terminology and conceptual reference for this lesson.
+4. Use my Trainer's Report and Dojo Targets to decide what deserves practice. Do not reteach material I already demonstrated well unless it is necessary for the target.
+5. Work on ONE target and ONE exercise at a time.
+6. Choose the exercise format to fit the weakness. Useful formats include:
+   - classification,
+   - distinguishing close concepts,
+   - error detection and correction,
+   - argument reconstruction,
+   - case analysis,
+   - counterexample analysis,
+   - comparison,
+   - application to a novel scenario,
+   - explanation and revision,
+   - objection and response.
+7. Do not assume I have a fixed "learning style." Vary the practice when useful and adapt based on my actual performance.
+8. Require me to justify important answers. Correct guessing is not enough.
+9. If I am wrong, give a HINT before giving an explanation. Let me try again.
+10. If I am partly right, identify the successful part and make me repair the weak part.
+11. If I am consistently successful, INCREASE difficulty by making examples less obvious, adding plausible distractors, requiring finer distinctions, or moving to transfer.
+12. If I am consistently struggling, REDUCE difficulty by isolating the component skill, offering a contrast, or providing a scaffold—then gradually remove the scaffold.
+13. Do not confuse difficulty with obscurity. Challenges should remain fair and relevant to the lesson.
+14. Avoid simply repeating the same question with different nouns. Practice should vary while targeting the same underlying skill.
+15. After feedback, periodically require a fresh attempt WITHOUT hints so that improvement is not confused with assisted performance.
+16. Keep explanations concise enough that I remain the one doing most of the thinking.
+
+MY TRAINER'S REPORT
+${report || "[No full report pasted]"}
+
+MY DOJO TARGETS
+${targets.length ? targets.map((t,i)=>`${i+1}. ${t}`).join("\n") : "[Extract the targets from the Trainer's Report]"}
+
+ADDITIONAL CONTEXT
+${context || "[None provided]"}
+
+INSTRUCTOR-PROVIDED GLOSSARY
+${glossary}
+
+YOUR TASK
+
+PHASE 1 — CHOOSE THE FIRST MOVE
+Review my Trainer's Report and Dojo Targets. Select the single highest-value weakness to practice first.
+
+Do NOT give me a long diagnosis. Briefly name the skill we are training and give me the FIRST exercise immediately.
+
+Choose an exercise whose success would provide real evidence that I understand the target—not merely recognize terminology.
+
+Wait for my response.
+
+PHASE 2 — COACH THE ATTEMPT
+Evaluate my reasoning, not just my final answer.
+
+If correct:
+- Briefly identify what I did well.
+- If my reasoning is thin, ask me to justify it before counting the attempt as successful.
+- Then give a slightly harder or differently structured exercise targeting the same underlying skill.
+
+If partly correct:
+- Identify the part that works.
+- Give a focused hint or contrast.
+- Ask me to repair the weak part.
+
+If incorrect:
+- Do NOT immediately reveal the answer.
+- Give one useful hint, counterexample, or simplified contrast.
+- Let me try again.
+- If I remain stuck after a reasonable attempt or two, explain the key idea concisely, then immediately give me a NEW problem requiring me to use it.
+
+PHASE 3 — PROGRESSIVE CHALLENGE
+Continue for several meaningful attempts, adapting difficulty to my performance.
+
+A useful progression is:
+1. ISOLATE — practice the core distinction or skill clearly.
+2. DISCRIMINATE — distinguish it from a nearby concept or tempting error.
+3. APPLY — use it in a new case.
+4. EXPLAIN — justify the answer in my own words.
+5. TRANSFER — solve a less familiar case without scaffolding.
+
+Do not mechanically force all five stages if they do not fit the target. The point is progressive challenge.
+
+PHASE 4 — INDEPENDENT TEST
+When my performance suggests improvement, tell me:
+"FINAL ROUND: No hints on this one."
+
+Give me one novel challenge that tests the target independently. Do not reuse an earlier example.
+
+After I answer, compare my performance with the weakness described in the Trainer's Report. Tell me whether the response provides evidence of improvement and explain why. If the weakness remains, continue practice rather than declaring mastery.
+
+PHASE 5 — NEXT TARGET
+If another Dojo Target remains, briefly transition to it and repeat the cycle. Do not mix several targets into one confusing exercise unless integration itself is the appropriate final challenge.
+
+PHASE 6 — SENSEI'S DEBRIEF
+When practice is complete, give me a concise debrief:
+- TRAINED: the concepts or reasoning skills we practiced.
+- IMPROVEMENT: specific evidence of what I can now do better.
+- STILL SHARPENING: anything that remains unstable or uncertain.
+- INDEPENDENT CHALLENGE: one short question I should try later, without AI, to check whether the learning lasts.
+
+Do not assign a grade, percentage, belt, level, or mastery score. Do not claim mastery from a few successful assisted attempts.
+
+Begin now. Name the FIRST skill we are training in one sentence, then give me ONE exercise and wait for my response.`;
+
+  document.getElementById("promptText").textContent=prompt;
+  document.getElementById("output").style.display="block";
+  document.getElementById("output").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+async function copyPrompt(){
+  const text=document.getElementById("promptText").textContent;
+  const status=document.getElementById("copyStatus");
+  try{
+    await navigator.clipboard.writeText(text);
+    status.textContent="Prompt copied.";
+  }catch(e){
+    status.textContent="Copy failed. Select the prompt text and copy it manually.";
+  }
+}
+
+function downloadPrompt(){
+  const text=document.getElementById("promptText").textContent;
+  const blob=new Blob([text],{type:"text/plain"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="promptforger-the-dojo-sensei.txt";
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+}
+
+function clearForm(){
+  ["report","target1","target2","target3","context"].forEach(id=>document.getElementById(id).value="");
+  document.getElementById("output").style.display="none";
+  document.getElementById("copyStatus").textContent="";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+</script>
+</body>
+</html>
