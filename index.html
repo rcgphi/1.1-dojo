@@ -49,33 +49,10 @@ button,input,select,textarea,summary{outline-color:var(--focus);outline-offset:3
 h1{font-size:clamp(2.2rem,5vw,4.2rem);line-height:1;margin:.3rem 0 .7rem}
 .hero strong{font-size:1.13rem}
 .hero p{max-width:670px;color:#d9e1ed;margin:.8rem 0 0}
-.heroArt{position:relative;min-height:300px;overflow:hidden;background:linear-gradient(145deg,#223653,#0e1727)}
-.heroArt:before{
-  content:"";
-  position:absolute;
-  width:230px;
-  height:230px;
-  border:1px solid rgba(255,255,255,.26);
-  border-radius:50%;
-  left:50%;
-  top:38%;
-  transform:translate(-50%,-50%);
-  box-shadow:0 0 0 34px rgba(255,255,255,.025),0 0 0 68px rgba(255,255,255,.02);
-}
-.heroArt:after{
-  content:"";
-  position:absolute;
-  width:0;
-  height:0;
-  border-left:150px solid transparent;
-  border-right:150px solid transparent;
-  border-bottom:230px solid rgba(214,169,75,.82);
-  left:50%;
-  bottom:-62px;
-  transform:translateX(-50%);
-  filter:drop-shadow(0 12px 22px rgba(0,0,0,.22));
-}
-.heroGlyph{position:absolute;z-index:2;inset:0;display:flex;align-items:center;justify-content:center;color:#fff;font-family:Georgia,serif;font-size:4.7rem;text-shadow:0 5px 18px rgba(0,0,0,.35);transform:translateY(-5px)}
+.heroMedia{position:relative;min-height:300px;overflow:hidden;background:#16243a}
+.heroMedia:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(17,24,39,.28),rgba(17,24,39,.02))}
+.heroMedia img{display:block;width:100%;height:100%;min-height:300px;object-fit:cover;object-position:center}
+.heroImg{background:linear-gradient(90deg,rgba(17,24,39,.28),rgba(17,24,39,.02)),url("https://images.squarespace-cdn.com/content/v1/6654dc7d82556754b3208baf/59820cac-c2f3-49d6-8d0e-30e332ba107a/photoTreeTriangle.jpg?format=2500w") center/cover no-repeat;min-height:285px}
 .intro,.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:25px;margin-top:20px;box-shadow:0 4px 14px rgba(16,24,40,.04)}
 .intro h2,.card h2{margin-top:0;line-height:1.25}
 .card h3{line-height:1.3}
@@ -100,14 +77,23 @@ textarea.big{min-height:180px}
 .help{font-size:.91rem;color:var(--muted);margin-top:6px}
 .required{color:var(--danger)}
 .fieldError{display:none;color:var(--danger);font-size:.9rem;font-weight:700;margin-top:6px}
-.choiceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:11px}
-.choiceCard{display:block;position:relative;margin:0;cursor:pointer}
-.choiceCard input{position:absolute;opacity:0;pointer-events:none}
-.choiceBody{height:100%;border:1px solid var(--line);border-radius:13px;padding:14px;background:#fbfcfe;transition:.16s ease}
-.choiceBody strong{display:block;color:var(--navy);margin-bottom:3px}
-.choiceBody span{display:block;color:var(--muted);font-size:.88rem;line-height:1.38}
-.choiceCard input:checked + .choiceBody{border-color:#365f96;background:var(--soft-blue);box-shadow:0 0 0 2px rgba(49,95,155,.11)}
-.choiceCard input:focus-visible + .choiceBody{outline:3px solid rgba(49,95,155,.35);outline-offset:2px}
+.choiceGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:11px}
+.choiceCard{position:relative;min-width:0;border:1px solid var(--line);border-radius:14px;background:#fbfcfe;overflow:visible;transition:.16s ease}
+.choiceCard input[type="radio"]{position:absolute;inline-size:1px;block-size:1px;opacity:0;pointer-events:none}
+.choiceBody{display:grid;grid-template-columns:25px minmax(0,1fr);gap:10px;align-items:start;min-width:0;padding:15px;cursor:pointer;border-radius:13px;transition:.16s ease}
+.choiceCopy{display:block;min-width:0}
+.choiceBody strong{display:block;color:var(--navy);margin-bottom:4px;overflow-wrap:anywhere}
+.choiceBody .choiceDescription{display:block;color:var(--muted);font-size:.9rem;line-height:1.42;overflow-wrap:anywhere}
+.radioMark{display:block;width:22px;height:22px;border:2px solid #7b8798;border-radius:50%;background:#fff;margin-top:1px;position:relative}
+.radioMark:after{content:"";position:absolute;inset:4px;border-radius:50%;background:#315f9b;transform:scale(0);transition:transform .14s ease}
+.choiceCard:has(input:checked){border-color:#365f96;background:var(--soft-blue);box-shadow:0 0 0 2px rgba(49,95,155,.11)}
+.choiceCard input:checked + .choiceBody .radioMark{border-color:#315f9b}
+.choiceCard input:checked + .choiceBody .radioMark:after{transform:scale(1)}
+.choiceCard:focus-within{outline:3px solid rgba(49,95,155,.35);outline-offset:2px}
+.methodBadge{display:inline-block;margin-top:6px;padding:3px 7px;border-radius:999px;background:#e7d8aa;color:#473813;font-size:.72rem;font-weight:850;letter-spacing:.02em}
+.methodMore{margin:0;border:0;border-top:1px solid var(--line);border-radius:0 0 13px 13px;background:rgba(255,255,255,.48)}
+.methodMore summary{padding:10px 15px;font-size:.86rem;color:#36506f}
+.methodMore div{padding:0 15px 14px;color:var(--muted);font-size:.88rem;line-height:1.48;overflow-wrap:anywhere}
 .conceptGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:11px}
 .concept{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);border-radius:10px;padding:10px;background:#fbfcfe;font-weight:680;cursor:pointer}
 .concept input{margin-top:4px;accent-color:#294e7e}
@@ -140,9 +126,9 @@ button:hover{filter:brightness(.97)}
 .matrix button{background:#102016;color:var(--green);border:1px solid #176f30}
 .status{min-height:1.4em;font-size:.88rem}
 footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:27px}
-@media(max-width:860px){.choiceGrid,.conceptGrid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:860px){.conceptGrid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:680px){
-  .hero{grid-template-columns:1fr}.heroArt{min-height:180px}.heroText{padding:30px 25px}
+  .hero{grid-template-columns:1fr}.heroMedia,.heroMedia img{min-height:180px;max-height:230px}.heroText{padding:30px 25px}
   .choiceGrid,.conceptGrid,.twoCol,.threeCol,.steps{grid-template-columns:1fr}
   .intro,.card{padding:20px}
 }
@@ -159,8 +145,8 @@ footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:27px}
     <strong>Choose the move. Make the first attempt. Then train with the Sensei.</strong>
     <p>Select what you want to practice and how you want to practice it. Your first attempt gives the Sensei evidence to build challenges that are demanding, responsive, and grounded in the language of this course.</p>
   </div>
-  <div class="heroArt" role="img" aria-label="Abstract circle and gold triangle suggesting a training space">
-    <div class="heroGlyph" aria-hidden="true">道</div>
+  <div class="heroMedia">
+    <img src="https://images.squarespace-cdn.com/content/v1/6654dc7d82556754b3208baf/59820cac-c2f3-49d6-8d0e-30e332ba107a/photoTreeTriangle.jpg?format=2500w" alt="Abstract tree and triangular landscape">
   </div>
 </section>
 
@@ -222,60 +208,37 @@ footer{text-align:center;color:var(--muted);font-size:.88rem;margin-top:27px}
   <fieldset style="border:0;padding:0;margin:0">
     <legend style="font-weight:800">Practice method <span class="required" aria-hidden="true">*</span></legend>
     <div class="choiceGrid">
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Distinction Drill" data-guide="Present close cases that require the learner to discriminate between neighboring concepts, justify the classification, and repair borderline judgments.">
-        <span class="choiceBody"><strong>Distinction Drill</strong><span>Separate nearby concepts using increasingly subtle examples.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Case Clinic" data-guide="Present realistic or imaginative cases one at a time. Require the learner to select and apply the relevant concept, cite features of the case, and consider a variation that could change the judgment.">
-        <span class="choiceBody"><strong>Case Clinic</strong><span>Apply course ideas to cases and explain the fit.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Debate Ring" data-guide="Help the learner prepare both sides before assigning a side. Exchange arguments and counterarguments one move at a time, then require the learner to identify the strongest and weakest moves and justify those evaluations.">
-        <span class="choiceBody"><strong>Debate Ring</strong><span>Prepare both sides, then argue one under pressure.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Role-Play Simulation" data-guide="Place the learner in a role with a clear goal and constraints. Play the other role or roles, reveal only information the learner would reasonably have, and pause for the learner's decisions. Debrief the use of course concepts after the simulation.">
-        <span class="choiceBody"><strong>Role-Play Simulation</strong><span>Make decisions from inside a philosophical situation.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Error Hunt" data-guide="Present flawed reasoning, explanations, or classifications. Require the learner to locate the precise error, name the relevant course concept, and repair the reasoning without changing more than necessary.">
-        <span class="choiceBody"><strong>Error Hunt</strong><span>Diagnose and repair a tempting mistake.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Counterexample Forge" data-guide="Present a claim or generalization and ask the learner to test it by constructing, assessing, and refining counterexamples. Require an explanation of what the counterexample establishes and what it does not establish.">
-        <span class="choiceBody"><strong>Counterexample Forge</strong><span>Stress-test claims with carefully designed cases.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Twenty-One Questions" data-guide="Privately choose an item, concept, position, or example supported by the course knowledge base. Let the learner ask up to twenty-one purposeful yes-or-no or short-answer questions, tracking the count. After the guess, analyze which questions were most informative.">
-        <span class="choiceBody"><strong>Twenty-One Questions</strong><span>Discover a hidden course item through strategic inquiry.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Perspective Shift" data-guide="Ask the learner to explain or evaluate a familiar claim from a different defensible perspective. Make the learner preserve the relevant course concepts and then compare what the shift reveals or obscures.">
-        <span class="choiceBody"><strong>Perspective Shift</strong><span>Reframe an idea without losing conceptual accuracy.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Annotation Lab" data-guide="If source material was supplied, work through it in short chunks. Ask the learner to identify claims, reasons, distinctions, or possible biases before offering feedback. Never annotate the entire passage for the learner. If no passage was supplied, request one before beginning.">
-        <span class="choiceBody"><strong>Annotation Lab</strong><span>Work through a passage in manageable chunks.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Visualize and Explain" data-guide="Invite the learner to construct a diagram, spatial arrangement, or vivid mental representation of the target. Ask for a verbal description, test whether the representation preserves the conceptual relations, and help revise it without drawing the complete representation first.">
-        <span class="choiceBody"><strong>Visualize and Explain</strong><span>Pair a verbal account with a visual or spatial model.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Association Bridge" data-guide="Ask the learner to connect the new target to something already understood. Test where the analogy or association helps, where it breaks down, and how the course concept must be stated independently of the familiar comparison.">
-        <span class="choiceBody"><strong>Association Bridge</strong><span>Connect new material to something already known.</span></span>
-      </label>
-      <label class="choiceCard">
-        <input type="radio" name="method" value="Adaptive Circuit" data-guide="Select the active-learning method that best fits the learner's target and first attempt. State the chosen method briefly. After several attempts, offer one bounded choice: deepen the same method or switch to a complementary method for transfer.">
-        <span class="choiceBody"><strong>Adaptive Circuit</strong><span>Let the Sensei choose, then offer you a meaningful choice later.</span></span>
-      </label>
+      <div class="choiceCard">
+        <input id="method-teachback" type="radio" name="method" value="Teach-Back Lab" data-guide="Ask the learner to explain the target as though teaching an intelligent beginner who has not taken the course. Examine the explanation for undefined terminology, hidden assumptions, missing inferential steps, misleading simplifications, and places where fluent language may conceal weak understanding. Do not rewrite the explanation for the learner. Ask focused questions that make the learner locate and repair each weakness. After revision, test the explanation with a new example or a reasonable beginner's follow-up question.">
+        <label class="choiceBody" for="method-teachback"><span class="radioMark" aria-hidden="true"></span><span class="choiceCopy"><strong>Teach-Back Lab</strong><span class="choiceDescription">Explain the idea to an intelligent beginner, uncover hidden gaps, and revise.</span></span></label>
+        <details class="methodMore"><summary>What will I do?</summary><div>Teach the target in your own words. The Sensei will probe undefined terms, missing steps, and misleading simplifications, then test your revision with a fresh example or beginner's question.</div></details>
+      </div>
+      <div class="choiceCard">
+        <input id="method-distinction" type="radio" name="method" value="Distinction Drill" data-guide="Present close cases that require the learner to discriminate between neighboring concepts, justify each classification using course language, and repair borderline judgments. Begin with a clear contrast, then vary one feature at a time until the learner can explain which difference matters and why.">
+        <label class="choiceBody" for="method-distinction"><span class="radioMark" aria-hidden="true"></span><span class="choiceCopy"><strong>Distinction Drill</strong><span class="choiceDescription">Separate nearby concepts by judging increasingly subtle cases.</span></span></label>
+        <details class="methodMore"><summary>What will I do?</summary><div>Classify paired or borderline cases, identify the feature that makes the difference, and defend the judgment using the lesson's distinctions rather than intuition alone.</div></details>
+      </div>
+      <div class="choiceCard">
+        <input id="method-visualize" type="radio" name="method" value="Visualize and Explain" data-guide="Ask the learner to build, interpret, or revise a visual representation in order to solve a philosophical problem—not merely summarize concepts. Have the learner draw or construct first and describe the representation in words. Test whether it preserves the relevant distinctions and inferential relations; introduce variations or new cases that reveal what the representation handles or distorts. Do not build the visual for the learner. Suitable forms include a consistency grid, argument diagram, or bias pathway.">
+        <label class="choiceBody" for="method-visualize"><span class="radioMark" aria-hidden="true"></span><span class="choiceCopy"><strong>Visualize and Explain</strong><span class="choiceDescription">Use a visual model to solve a problem, then test what the model preserves.</span></span></label>
+        <details class="methodMore"><summary>What will I do?</summary><div>Create a consistency grid, argument diagram, bias pathway, or another useful representation. Explain how it solves the problem; then revise it when a new case exposes an ambiguity or lost distinction.</div></details>
+      </div>
+      <div class="choiceCard">
+        <input id="method-debate" type="radio" name="method" value="Debate Ring" data-guide="Help the learner prepare the strongest defensible version of both sides before assigning a side. Exchange arguments and counterarguments one move at a time. Require explicit use of the lesson's concepts, then ask the learner to identify the strongest and weakest moves, explain those evaluations, and revise one weak move.">
+        <label class="choiceBody" for="method-debate"><span class="radioMark" aria-hidden="true"></span><span class="choiceCopy"><strong>Debate Ring</strong><span class="choiceDescription">Prepare both sides, defend one under pressure, and assess the exchange.</span></span></label>
+        <details class="methodMore"><summary>What will I do?</summary><div>Build fair cases for competing positions before taking a side. Respond to one counterargument at a time, then evaluate which moves succeeded, which failed, and how one could be repaired.</div></details>
+      </div>
+      <div class="choiceCard">
+        <input id="method-xray" type="radio" name="method" value="Argument X-Ray" data-guide="Present a short argument or dialogue. Require the learner to (1) reconstruct its premises and conclusion, (2) trace how the stated and hidden premises support the conclusion, (3) test the set of claims for consistency, (4) inspect the reasoning for fallacy or bias using the course's terminology, and (5) repair the weakest part without changing more than necessary. In early rounds, stage these steps one at a time; in later rounds, require an integrated analysis and a new transfer case.">
+        <label class="choiceBody" for="method-xray"><span class="radioMark" aria-hidden="true"></span><span class="choiceCopy"><strong>Argument X-Ray</strong><span class="choiceDescription">Expose an argument's structure, pressure-test it, and repair its weakest part.</span><span class="methodBadge">Lesson 1.1 original</span></span></label>
+        <details class="methodMore"><summary>What will I do?</summary><div>Reconstruct premises and conclusion, trace the support, test consistency, inspect for fallacy or bias, and make the smallest repair that strengthens the reasoning. Later rounds combine all five moves.</div></details>
+      </div>
     </div>
   </fieldset>
   <div class="fieldError" id="methodError" role="alert">Choose a practice method.</div>
 
   <label class="fieldLabel" for="sourceMaterial">Passage, problem, or example to use</label>
-  <textarea id="sourceMaterial" placeholder="Optional for most methods. For Annotation Lab, paste the passage you want to examine."></textarea>
+  <textarea id="sourceMaterial" placeholder="Optional: paste an argument, passage, problem, dialogue, or example you want to examine."></textarea>
 
   <div class="twoCol">
     <div>
